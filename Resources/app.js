@@ -94,7 +94,7 @@ var sendFileBtn = Ti.UI.createButton({
 
 sendFileBtn.addEventListener('click', function(e) {
 	watchSession.transferFile({
-		fileURL: 'default_app_logo.png',
+		fileURL: '/images/default_app_logo.png',
 		metaData: {
 			data: 'appcelerator logo'
 		}
