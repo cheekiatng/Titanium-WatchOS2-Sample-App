@@ -7,7 +7,7 @@ var eventsArea = Ti.UI.createTextArea({
   borderColor: '#bbb',
   borderRadius: 5,
   color: '#888',
-  font: {fontSize:10},
+  font: {fontSize:16},
   textAlign: 'left',
   value: 'This is where we listen for events',
   bottom: 10,
@@ -50,7 +50,11 @@ var sendMsgBtn = Ti.UI.createButton({
 
 sendMsgBtn.addEventListener('click', function(e) {
 	watchSession.sendMessage({
-		message: 'Hi from app'
+		message: {
+			message: 'Hi',
+			from: 'app',
+			type: 'message'
+		}
 	});
 });
 
@@ -61,7 +65,10 @@ var sendUserInfoBtn = Ti.UI.createButton({
 
 sendUserInfoBtn.addEventListener('click', function(e) {
 	watchSession.transferUserInfo({
-		userInfo: 'user info from app'
+		userInfo: {
+			data: 'user info from app',
+			created: '2015'
+		}
 	});
 });
 
@@ -73,10 +80,10 @@ var sendAppContextBtn = Ti.UI.createButton({
 sendAppContextBtn.addEventListener('click', function(e) {
 	//only the latest appContext is registered. Send 2 to test.
 	watchSession.updateAppContext({
-		appContext: 'AppContext from app you should not see'
-	});
-	watchSession.updateAppContext({
-		appContext: 'AppContext from app'
+		appContext: {
+			status: 'AppContext from app',
+			updates: 2
+		}
 	});
 });
 
