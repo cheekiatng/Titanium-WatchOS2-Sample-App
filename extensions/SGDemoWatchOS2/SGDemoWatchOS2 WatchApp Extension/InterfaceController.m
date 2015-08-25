@@ -64,28 +64,27 @@
 
 -(IBAction)sendAppContextButtonPressed:(id)sender
 {
-    //only latest appContext is registered. send 2 to test.
-    [watchSession updateApplicationContext:[NSDictionary dictionaryWithObjectsAndKeys:@"App context from watch you should not see",@"appContext", nil] error:nil];
-    [watchSession updateApplicationContext:[NSDictionary dictionaryWithObjectsAndKeys:@"App context from watch",@"appContext", nil] error:nil];
+    //only latest appContext is registered.
+    [watchSession updateApplicationContext:[NSDictionary dictionaryWithObjectsAndKeys:@"App context from watch",@"title", nil] error:nil];
 }
 
 -(IBAction)sendUserInfoButtonPressed:(id)sender
 {
-    [watchSession transferUserInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"User Info from watch",@"message", nil]];
+    [watchSession transferUserInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"User Info from watch",@"data", nil]];
 }
 
 #pragma mark watch delegates
 - (void)session:(nonnull WCSession *)session didReceiveMessage:(nonnull NSDictionary<NSString *,id> *)message
 {
-    _titaniumLabel.text = [NSString stringWithFormat:@"Received Message: %@",message.description] ;
+    _titaniumLabel.text = [NSString stringWithFormat:@"Received Message: %@",[message objectForKey:@"message"]] ;
     backgroundSavedString = nil;
 }
 
 - (void)session:(nonnull WCSession *)session didReceiveUserInfo:(nonnull NSDictionary<NSString *,id> *)userInfo
 {
     //if in foreground just change text immediately
-    _titaniumLabel.text = [NSString stringWithFormat:@"(foreground)Received User Info : %@",userInfo.description];
-    backgroundSavedString = [NSString stringWithFormat:@"Received User Info: %@",userInfo.description];
+    _titaniumLabel.text = [NSString stringWithFormat:@"(foreground)Received User Info : %@",[userInfo objectForKey:@"data"]];
+    backgroundSavedString = [NSString stringWithFormat:@"Received User Info: %@",[userInfo objectForKey:@"data"]];
     
 }
 
@@ -110,8 +109,8 @@
 
 - (void)session:(nonnull WCSession *)session didReceiveApplicationContext:(nonnull NSDictionary<NSString *,id> *)applicationContext
 {
-    _titaniumLabel.text = [NSString stringWithFormat:@"(foreground)Received App Context: %@",applicationContext.description] ;
-    backgroundSavedString = [NSString stringWithFormat:@"Received App Context: %@",applicationContext.description] ;
+    _titaniumLabel.text = [NSString stringWithFormat:@"(foreground)Received App Context: %@",[applicationContext objectForKey:@"title"]] ;
+    backgroundSavedString = [NSString stringWithFormat:@"Received App Context: %@",[applicationContext objectForKey:@"title"]] ;
     
 }
 @end

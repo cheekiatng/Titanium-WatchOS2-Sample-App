@@ -49,11 +49,9 @@ var sendMsgBtn = Ti.UI.createButton({
 
 sendMsgBtn.addEventListener('click', function(e) {
 	Ti.WatchSession.sendMessage({
-		message: {
-			message: 'Hi',
-			from: 'app',
-			type: 'message'
-		}
+		message: 'Hi',
+		from: 'app',
+		type: 'message'
 	});
 });
 
@@ -64,10 +62,8 @@ var sendUserInfoBtn = Ti.UI.createButton({
 
 sendUserInfoBtn.addEventListener('click', function(e) {
 	Ti.WatchSession.transferUserInfo({
-		userInfo: {
-			data: 'user info from app',
-			created: '2015'
-		}
+		data: 'user info from app',
+		created: '2015'
 	});
 });
 
@@ -79,10 +75,8 @@ var sendAppContextBtn = Ti.UI.createButton({
 sendAppContextBtn.addEventListener('click', function(e) {
 	//only the latest appContext is registered. Send 2 to test.
 	Ti.WatchSession.updateAppContext({
-		appContext: {
-			status: 'AppContext from app',
-			updates: 2
-		}
+		status: 'AppContext from app',
+		updates: 2
 	});
 });
 
