@@ -65,7 +65,7 @@
 -(IBAction)sendAppContextButtonPressed:(id)sender
 {
     //only latest appContext is registered.
-    [watchSession updateApplicationContext:[NSDictionary dictionaryWithObjectsAndKeys:@"App context from watch",@"title", nil] error:nil];
+    [watchSession updateApplicationContext:[NSDictionary dictionaryWithObjectsAndKeys:@"App context from watch",@"status", nil] error:nil];
 }
 
 -(IBAction)sendUserInfoButtonPressed:(id)sender
@@ -109,8 +109,8 @@
 
 - (void)session:(nonnull WCSession *)session didReceiveApplicationContext:(nonnull NSDictionary<NSString *,id> *)applicationContext
 {
-    _titaniumLabel.text = [NSString stringWithFormat:@"(foreground)Received App Context: %@",[applicationContext objectForKey:@"title"]] ;
-    backgroundSavedString = [NSString stringWithFormat:@"Received App Context: %@",[applicationContext objectForKey:@"title"]] ;
+    _titaniumLabel.text = [NSString stringWithFormat:@"(foreground)Received App Context: %@",[applicationContext objectForKey:@"status"]] ;
+    backgroundSavedString = [NSString stringWithFormat:@"Received App Context: %@",[applicationContext objectForKey:@"status"]] ;
     
 }
 @end

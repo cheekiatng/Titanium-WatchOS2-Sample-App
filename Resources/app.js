@@ -2,6 +2,10 @@ var win = Ti.UI.createWindow({
 	backgroundColor: 'white'
 });
 
+//Activate watch session so that it can start receiving data from watch
+//once app boots
+Ti.WatchSession.activate();
+
 var eventsArea = Ti.UI.createTextArea({
   borderWidth: 2,
   borderColor: '#bbb',
