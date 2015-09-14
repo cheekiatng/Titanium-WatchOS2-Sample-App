@@ -43,21 +43,42 @@ statusBtn.addEventListener('click', function(e) {
 win.add(statusBtn);
 
 var sendMsgBtn = Ti.UI.createButton({
-    title: 'send Message to watch',
+    title: 'send Message with onReply to watch',
     top: 80
 });
 
 sendMsgBtn.addEventListener('click', function(e) {
     Ti.WatchSession.sendMessage({
-        message: 'Hi',
-        from: 'app',
-        type: 'message'
+        message: {
+            message: 'Hi',
+            from: 'app',
+            type: 'messageWithReply'           
+        },
+        onReply: function(e) {
+            eventsArea.value += '\nreceive immediate message reply '
+            + '\n' + JSON.stringify(e);           
+        }
+    });
+});
+
+var sendMsgBtn2 = Ti.UI.createButton({
+    title: 'send Message to watch',
+    top: 120
+});
+
+sendMsgBtn2.addEventListener('click', function(e) {
+    Ti.WatchSession.sendMessage({
+        message: {
+            message: 'Hi',
+            from: 'app',
+            type: 'messageWithoutReply'           
+        }
     });
 });
 
 var sendUserInfoBtn = Ti.UI.createButton({
     title: 'send User Info to watch',
-    top: 120
+    top: 160
 });
 
 sendUserInfoBtn.addEventListener('click', function(e) {
@@ -69,7 +90,7 @@ sendUserInfoBtn.addEventListener('click', function(e) {
 
 var sendAppContextBtn = Ti.UI.createButton({
     title: 'update app context to watch',
-    top: 160
+    top: 200
 });
 
 sendAppContextBtn.addEventListener('click', function(e) {
@@ -81,7 +102,7 @@ sendAppContextBtn.addEventListener('click', function(e) {
 
 var sendFileBtn = Ti.UI.createButton({
     title: 'send File to watch',
-    top: 200
+    top: 240
 });
 
 sendFileBtn.addEventListener('click', function(e) {
@@ -94,8 +115,8 @@ sendFileBtn.addEventListener('click', function(e) {
 });
 
 Ti.WatchSession.addEventListener('receivemessage', function(e) {
-    eventsArea.value += '\nreceivemessage '
-    + '\n' + JSON.stringify(e);
+    eventsArea.value += '\nreceive message '
+    + '\n' + JSON.stringify(e.message);
 });
 
 Ti.WatchSession.addEventListener('receiveuserinfo', function(e) {
@@ -136,6 +157,7 @@ Ti.WatchSession.addEventListener('finishuserinfotransfer', function(e) {
     + '\n' + JSON.stringify(e);
 });
 win.add(sendMsgBtn);
+win.add(sendMsgBtn2);
 win.add(sendUserInfoBtn);
 win.add(sendFileBtn);
 win.add(sendAppContextBtn);

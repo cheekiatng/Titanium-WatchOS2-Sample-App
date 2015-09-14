@@ -80,6 +80,13 @@
     backgroundSavedString = nil;
 }
 
+- (void)session:(WCSession *)session didReceiveMessage:(NSDictionary<NSString *,id> *)message replyHandler:(void (^)(NSDictionary<NSString *,id> * _Nonnull))replyHandler
+{
+    _titaniumLabel.text = [NSString stringWithFormat:@"Received Message: %@. Replying now.",[message objectForKey:@"message"]] ;
+    backgroundSavedString = nil;
+    replyHandler([NSDictionary dictionaryWithObject:@"replyHandled from watch" forKey:@"message"]);
+}
+
 - (void)session:(nonnull WCSession *)session didReceiveUserInfo:(nonnull NSDictionary<NSString *,id> *)userInfo
 {
     //if in foreground just change text immediately

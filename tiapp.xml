@@ -75,5 +75,5 @@
 		<target device="iphone">true</target>
 		<target device="mobileweb">true</target>
 	</deployment-targets>
-	<sdk-version>4.2.0</sdk-version>
+	<sdk-version>5.0.0</sdk-version>
 </ti:app>
