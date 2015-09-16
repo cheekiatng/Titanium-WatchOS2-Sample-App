@@ -43,7 +43,7 @@ statusBtn.addEventListener('click', function(e) {
 win.add(statusBtn);
 
 var sendMsgBtn = Ti.UI.createButton({
-    title: 'send Message with onReply to watch',
+    title: 'send Message with reply to watch',
     top: 80
 });
 
