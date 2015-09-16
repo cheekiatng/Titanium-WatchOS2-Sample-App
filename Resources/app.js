@@ -54,7 +54,7 @@ sendMsgBtn.addEventListener('click', function(e) {
             from: 'app',
             type: 'messageWithReply'           
         },
-        onReply: function(e) {
+        reply: function(e) {
             eventsArea.value += '\nreceive immediate message reply '
             + '\n' + JSON.stringify(e);           
         }
